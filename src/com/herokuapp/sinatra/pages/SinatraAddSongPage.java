@@ -44,13 +44,15 @@ public class SinatraAddSongPage {
 	
 	@FindBy(how = How.XPATH, using = "//input[@value='Save Song']")
 	WebElement saveSongBtn;
+	
+	@FindBy(how = How.XPATH, using = "//h1")
+	WebElement pageTitleLbl;
+	
 
 	//Methods
 	public void goToSinatraAddSongsPage() {
 		driverWait = new WebDriverWait(driver, 15);
 		elementValidation = new PageElementsValidation();
-
-		
 
 		if (elementValidation.elementValidation(addSongLnk) == false) {
 			driver.quit();
@@ -80,7 +82,7 @@ public class SinatraAddSongPage {
 		lengthSongTxt.sendKeys(""+LENGTH_SONG);
 		releaseDateSongTxt.clear();
 		releaseDateSongTxt.sendKeys(RELEASE_DATE_SONG);
-		titleSongTxt.click();
+		pageTitleLbl.click();
 		lyricsSongTxt.clear();
 		lyricsSongTxt.sendKeys(LYRICS_SONG);
 		saveSongBtn.click();

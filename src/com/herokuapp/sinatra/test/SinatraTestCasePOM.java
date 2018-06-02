@@ -24,7 +24,7 @@ public class SinatraTestCasePOM extends TestBasePOM {
 	}
 	
 	@Test
-	@FileParameters("./data/params2.csv")
+	@FileParameters("./data/params.csv")
 	public void sinatraAboutPageTestCase(String user, String password) {
 		aboutPage.goToSinatraAboutPage();
 		aboutPage.sinatraAboutPageElementsValidation();
@@ -38,10 +38,11 @@ public class SinatraTestCasePOM extends TestBasePOM {
 	}
 	
 	@Test
-	public void sinatraContactPageTestCase() {
+	@FileParameters("./data/contactInfo.csv")
+	public void sinatraContactPageTestCase(String name, String email, String urMessage) {
 		contactPage.goToSinatraContactPage();
 		contactPage.sinatraContactPageElementsValidatation();
-		contactPage.sendContactMessage("Juan Perez", "juan.perez@sinatra.com", "hola");
+		contactPage.sendContactMessage(name, email, urMessage);
 		
 		loginPage.goToLoginPage();
 		loginPage.sinatraLoginPageElementsValidation();
@@ -52,7 +53,8 @@ public class SinatraTestCasePOM extends TestBasePOM {
 	}
 	
 	@Test
-	public void sinatraSongsPageTestCase() {
+	@FileParameters("./data/songInfo.csv")
+	public void sinatraSongsPageTestCase(String songName, int lenght, String releaseOn, String lyrics) {
 		loginPage.goToLoginPage();
 		loginPage.sinatraLoginPageElementsValidation();
 		loginPage.loginSinatraPage("frank", "sinatra");
@@ -62,7 +64,7 @@ public class SinatraTestCasePOM extends TestBasePOM {
 
 		addSongPage.goToSinatraAddSongsPage();
 		addSongPage.sinatraAddSongPageElementsValidation();
-		addSongPage.addSong("SongTest", 12, "05/30/2018", "SongTestLyrics");
+		addSongPage.addSong(songName, lenght, releaseOn, lyrics);
 		
 		logoutPage.sinatraLogoutElementsValidation();
 		logoutPage.logoutSinatraPage();
